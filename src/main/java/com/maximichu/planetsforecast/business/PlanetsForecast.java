@@ -13,7 +13,13 @@ public class PlanetsForecast implements IForecastPrediction {
     @Override
     public ForecastType calculateForecast(Integer years) {
 
+        Integer aniosEnDias = years * Constantes.ANIO_EN_DIAS;
+
         this.iniciarPrediccion();
+
+        for (int i = 1; i <= aniosEnDias; i++) {
+
+        }
 
         ForecastType forecastType = new ForecastType();
 

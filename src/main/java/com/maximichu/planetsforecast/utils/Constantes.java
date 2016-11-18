@@ -39,7 +39,7 @@ public class Constantes {
     /**
      * Generales
      */
-    public static Integer ANIO = 365;
+    public static Integer ANIO_EN_DIAS = 365;
     public static Integer GRAD_CIRCUNF = 360;
 
     /**
