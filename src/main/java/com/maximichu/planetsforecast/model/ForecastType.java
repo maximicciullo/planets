@@ -9,6 +9,7 @@ public class ForecastType {
     private Integer cantidadCondOptimas;
 
 
+
     public ForecastType() {
 
     }

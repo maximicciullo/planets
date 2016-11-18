@@ -13,9 +13,18 @@ public class Position implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Float x;
+    private Double x;
 
-    private Float y;
+    private Double y;
+
+    private Double velocidadAngular;
+
+
+    public Position(Double velocidadAngular, Double x, Double y) {
+        this.velocidadAngular = velocidadAngular;
+        this.x = x;
+        this.y = y;
+    }
 
     public Long getId() {
         return id;
@@ -25,20 +34,27 @@ public class Position implements Serializable {
         this.id = id;
     }
 
-    public Float getX() {
+    public Double getX() {
         return x;
     }
 
-    public void setX(Float x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public Float getY() {
+    public Double getY() {
         return y;
     }
 
-    public void setY(Float y) {
+    public void setY(Double y) {
         this.y = y;
     }
 
+    public Double getVelocidadAngular() {
+        return velocidadAngular;
+    }
+
+    public void setVelocidadAngular(Double velocidadAngular) {
+        this.velocidadAngular = velocidadAngular;
+    }
 }
