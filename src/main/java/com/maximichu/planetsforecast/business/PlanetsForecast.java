@@ -3,12 +3,14 @@ package com.maximichu.planetsforecast.business;
 import com.maximichu.planetsforecast.model.ForecastType;
 import com.maximichu.planetsforecast.model.Planet;
 import com.maximichu.planetsforecast.model.Position;
+import com.maximichu.planetsforecast.model.PredictionType;
 import org.springframework.stereotype.Component;
 import com.maximichu.planetsforecast.utils.Constantes;
 
 @Component
-public class PlanetsForecast implements IForecastPrediction {
+public class PlanetsForecast {
 
+    private ForecastType forecastType;
 
     @Override
     public ForecastType calculateForecast(Integer years) {
@@ -17,55 +19,39 @@ public class PlanetsForecast implements IForecastPrediction {
 
         this.iniciarPrediccion();
 
-        for (int i = 1; i <= aniosEnDias; i++) {
-
-        }
-
         ForecastType forecastType = new ForecastType();
 
-        // Calcular cantidad de sequias.
-        Integer cantSequias = calcularCantidadSequia(years);
-        forecastType.setCantidadSequias(cantSequias);
 
-        // Calcular cantidad de lluvias.
-        Integer cantLluvias = calcularCantidadLluvia(years);
-        forecastType.setCantidadLluvias(cantLluvias);
+        for (int i = 1; i <= aniosEnDias; i++) {
 
-        // Calcular dia maximo de lluvia.
-        Integer diaMaximoLluvias = calcularDiaMaximoLluvia(years);
-        forecastType.setDiaMaximoLluvias(diaMaximoLluvias);
+            // Obtener la prediccion para el dia.
+            PredictionType prediccionDelDia = obtenerPrediccionDia(i);
 
-        // Calcular cantidad de dias optimos.
-        Integer cantDiasOptimos = calcularCondicionesOptimas(years);
-        forecastType.setCantidadCondOptimas(cantDiasOptimos);
+            // Persistir la prediccion del dia.
+
+            // Actualizar cantidades del pronostico.
+            actualizarCantidadesPronostico(prediccionDelDia);
+        }
 
         return forecastType;
     }
 
-    @Override
-    public Integer calcularCantidadSequia(Integer years) {
-        return 10;
+    public PredictionType obtenerPrediccionDia(int dia) {
+        PredictionType predictionType = new PredictionType(dia);
+
     }
 
-    @Override
-    public Integer calcularCantidadLluvia(Integer years) {
-        return 200;
-    }
+    public void actualizarCantidadesPronostico(PredictionType predictionType) {
 
-    @Override
-    public Integer calcularCondicionesOptimas(Integer years) {
-        return 15;
-    }
-
-    @Override
-    public Integer calcularDiaMaximoLluvia(Integer years) {
-        return 156;
     }
 
     private void iniciarPrediccion() {
         Planet ferengi = new Planet(Constantes.FERENGI, Constantes.DIST_FERENGI, Constantes.VEL_FERENGI, Constantes.ROT_FERENGI);
         Planet betasoide = new Planet(Constantes.BETASOIDE, Constantes.DIST_BETASOIDE, Constantes.VEL_BETASOIDE, Constantes.ROT_BETASOIDE);
         Planet vulcano = new Planet(Constantes.VULCANO, Constantes.DIST_VULCANO, Constantes.VEL_VULCANO, Constantes.ROT_VULCANO);
+
+        // Inicializar contadores;
+        forecastType = new ForecastType();
     }
 
     private Position getPosition(Planet planeta, Integer dia) {

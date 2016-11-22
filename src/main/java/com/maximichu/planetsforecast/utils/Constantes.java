@@ -48,5 +48,6 @@ public class Constantes {
     public static String CLIMA_HUMEDO = "LLUVIA";
     public static String CLIMA_SECO = "SECO";
     public static String CLIMA_OPTIMO = "OPTIMO";
+    public static String CLIMA_INICIAL = "INICIAL";
 
 }

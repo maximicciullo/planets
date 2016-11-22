@@ -7,18 +7,23 @@ public class ForecastType {
     private Integer cantidadLluvias;
     private Integer diaMaximoLluvias;
     private Integer cantidadCondOptimas;
-
+    private Double  maximoPrecipitaciones;
 
 
     public ForecastType() {
-
+        this.cantidadSequias = 0;
+        this.cantidadLluvias = 0;
+        this.cantidadCondOptimas = 0;
+        this.cantidadCondOptimas = 0;
+        this.maximoPrecipitaciones = 0.0;
     }
 
-    public ForecastType(Integer cantSequias, Integer cantLluvias, Integer diaMaxLluvias, Integer cantCondOpt) {
+    public ForecastType(Integer cantSequias, Integer cantLluvias, Integer diaMaxLluvias, Integer cantCondOpt, Double maximoPrecipitaciones) {
         this.cantidadSequias = cantSequias;
         this.cantidadLluvias = cantLluvias;
         this.diaMaximoLluvias = diaMaxLluvias;
         this.cantidadCondOptimas = cantCondOpt;
+        this.maximoPrecipitaciones = maximoPrecipitaciones;
     }
 
     public Integer getCantidadSequias() {
@@ -53,4 +58,11 @@ public class ForecastType {
         this.cantidadCondOptimas = cantidadCondOptimas;
     }
 
+    public Double getMaximoPrecipitaciones() {
+        return maximoPrecipitaciones;
+    }
+
+    public void setMaximoPrecipitaciones(Double maximoPrecipitaciones) {
+        this.maximoPrecipitaciones = maximoPrecipitaciones;
+    }
 }
