@@ -33,14 +33,15 @@ public class Constantes {
     /**
      * SOL
      */
-    public static Double POS_X = 0.0;
-    public static Double POS_Y = 0.0;
+    public static Double SOL_POS_X = 0.0;
+    public static Double SOL_POS_Y = 0.0;
 
     /**
      * Generales
      */
     public static Integer ANIO_EN_DIAS = 365;
     public static Integer GRAD_CIRCUNF = 360;
+    public static Float   LAMDA_TOLERANCIA = new Float(20);
 
     /**
      * Clima

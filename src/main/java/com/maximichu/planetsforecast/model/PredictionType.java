@@ -1,26 +1,21 @@
 package com.maximichu.planetsforecast.model;
 
-import java.util.ArrayList;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import com.maximichu.planetsforecast.business.PositionDay;
 import com.maximichu.planetsforecast.utils.Constantes;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Entity
+import java.util.ArrayList;
+
 public class PredictionType {
 
     @Autowired
     private PositionDay positionDay;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer id;
     private Boolean planetasAlineados;
     private Boolean solConPlanetas;
+    private Boolean solTriangulo;
     private Double perimetro;
     private ArrayList<Planet> planetas;
     private String estadoClima;
@@ -30,11 +25,12 @@ public class PredictionType {
         this.id = dia;
         this.planetasAlineados = Boolean.FALSE;
         this.solConPlanetas = Boolean.FALSE;
+        this.solTriangulo = Boolean.FALSE;
         this.perimetro = new Double(0.00);
         this.planetas = new ArrayList<Planet>();
         this.estadoClima = Constantes.CLIMA_INICIAL;
 
-        if (planetas == null) {
+        if (planetas == null || planetas.isEmpty()) {
             cargarPlanetas();
         }
 
@@ -47,16 +43,19 @@ public class PredictionType {
         Planet betasoide = new Planet(Constantes.BETASOIDE, Constantes.DIST_BETASOIDE, Constantes.VEL_BETASOIDE, Constantes.ROT_BETASOIDE);
         Planet vulcano = new Planet(Constantes.VULCANO, Constantes.DIST_VULCANO, Constantes.VEL_VULCANO, Constantes.ROT_VULCANO);
 
+        planetas = new ArrayList<Planet>();
         planetas.add(ferengi);
         planetas.add(betasoide);
         planetas.add(vulcano);
     }
 
     private void cargarPosiciones(int dia) {
+
         Position posicionFerengi = positionDay.getPosition(planetas.get(0), dia);
         Position posicionBetasoide = positionDay.getPosition(planetas.get(1), dia);
         Position posicionVulcano = positionDay.getPosition(planetas.get(2), dia);
 
+        posicionPlanetas = new ArrayList<Position>();
         posicionPlanetas.add(posicionFerengi);
         posicionPlanetas.add(posicionBetasoide);
         posicionPlanetas.add(posicionVulcano);
@@ -124,5 +123,13 @@ public class PredictionType {
 
     public void setPosicionPlanetas(ArrayList<Position> posicionPlanetas) {
         this.posicionPlanetas = posicionPlanetas;
+    }
+
+    public Boolean getSolTriangulo() {
+        return solTriangulo;
+    }
+
+    public void setSolTriangulo(Boolean solTriangulo) {
+        this.solTriangulo = solTriangulo;
     }
 }

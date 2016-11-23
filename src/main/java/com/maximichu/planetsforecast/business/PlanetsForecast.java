@@ -1,27 +1,26 @@
 package com.maximichu.planetsforecast.business;
 
-import com.maximichu.planetsforecast.model.ForecastType;
-import com.maximichu.planetsforecast.model.Planet;
-import com.maximichu.planetsforecast.model.Position;
-import com.maximichu.planetsforecast.model.PredictionType;
-import org.springframework.stereotype.Component;
-import com.maximichu.planetsforecast.utils.Constantes;
+        import com.maximichu.planetsforecast.model.ForecastType;
+        import com.maximichu.planetsforecast.model.PredictionType;
+        import com.maximichu.planetsforecast.utils.Constantes;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Component;
 
 @Component
 public class PlanetsForecast {
 
-    // contiene los contadores.
-    private ForecastType forecastType;
+    @Autowired
+    private WeatherPrediction weatherPrediction;
+
+    private Double picoMaximoLluvias = new Double(0.00);
 
     public ForecastType calculateForecast(Integer years) {
 
         Integer aniosEnDias = years * Constantes.ANIO_EN_DIAS;
 
-        //this.iniciarPrediccion();
-
         ForecastType forecastType = new ForecastType();
 
-
+        // Iterar todos los dias del total de anios para calcular el pronostico.
         for (int i = 1; i <= aniosEnDias; i++) {
 
             // Obtener la prediccion para el dia.
@@ -30,7 +29,7 @@ public class PlanetsForecast {
             // Persistir la prediccion del dia.
 
             // Actualizar cantidades del pronostico.
-            actualizarCantidadesPronostico(forecastType);
+            actualizarCantidadesPronostico(prediccionDelDia, forecastType);
         }
 
         return forecastType;
@@ -38,22 +37,21 @@ public class PlanetsForecast {
 
     public PredictionType obtenerPrediccionDia(int dia) {
         PredictionType predictionType = new PredictionType(dia);
-
+        predictionType = weatherPrediction.prediction(predictionType);
+        return predictionType;
     }
 
-    public void actualizarCantidadesPronostico(ForecastType forecastType) {
-
+    public void actualizarCantidadesPronostico(PredictionType prediccionDia, ForecastType forecastType) {
+        if (prediccionDia.getEstadoClima().equalsIgnoreCase(Constantes.CLIMA_SECO)) {
+            forecastType.setCantidadSequias(forecastType.getCantidadSequias() + 1);
+        } else if (prediccionDia.getEstadoClima().equalsIgnoreCase(Constantes.CLIMA_OPTIMO)) {
+            forecastType.setCantidadCondOptimas(forecastType.getCantidadCondOptimas() + 1);
+        } else {
+            forecastType.setCantidadLluvias(forecastType.getCantidadLluvias() + 1);
+            if (picoMaximoLluvias < prediccionDia.getPerimetro()) {
+                picoMaximoLluvias = prediccionDia.getPerimetro();
+                forecastType.setDiaMaximoLluvias(prediccionDia.getId());
+            }
+        }
     }
-
-    /*
-    private void iniciarPrediccion() {
-        Planet ferengi = new Planet(Constantes.FERENGI, Constantes.DIST_FERENGI, Constantes.VEL_FERENGI, Constantes.ROT_FERENGI);
-        Planet betasoide = new Planet(Constantes.BETASOIDE, Constantes.DIST_BETASOIDE, Constantes.VEL_BETASOIDE, Constantes.ROT_BETASOIDE);
-        Planet vulcano = new Planet(Constantes.VULCANO, Constantes.DIST_VULCANO, Constantes.VEL_VULCANO, Constantes.ROT_VULCANO);
-
-        // Inicializar contadores;
-        forecastType = new ForecastType();
-    }*/
-
-
 }
