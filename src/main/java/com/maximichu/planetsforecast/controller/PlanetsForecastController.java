@@ -35,16 +35,19 @@ public class PlanetsForecastController {
     @RequestMapping(value = "/planetForecast", method = RequestMethod.POST)
     public ModelAndView planetForecast(Map<String, Object> model, @RequestParam("years") String years) {
 
-        // Calcular prediccion de tiempo para los años que se pasan por parametro
-        model.put("years", years);
+        if (Integer.valueOf(years) < 1 || years.isEmpty()) {
+            model.put("error", "Valor invalido de anio, debe ser mayor a cero !!");
+        } else {
+            // Calcular prediccion de tiempo para los años que se pasan por parametro
+            model.put("years", years);
 
-        ForecastType forecast = weatherService.calcularPronostico(Integer.valueOf(years)) ;
+            ForecastType forecast = weatherService.calcularPronostico(Integer.valueOf(years)) ;
 
-        model.put("cantSequias", forecast.getCantidadSequias());
-        model.put("cantLluvias", forecast.getCantidadLluvias());
-        model.put("diaPicoMax", forecast.getDiaMaximoLluvias());
-        model.put("cantCondOpt", forecast.getCantidadCondOptimas());
-
+            model.put("cantSequias", forecast.getCantidadSequias());
+            model.put("cantLluvias", forecast.getCantidadLluvias());
+            model.put("diaPicoMax", forecast.getDiaMaximoLluvias());
+            model.put("cantCondOpt", forecast.getCantidadCondOptimas());
+        }
         return new ModelAndView("listForecast");
     }
 

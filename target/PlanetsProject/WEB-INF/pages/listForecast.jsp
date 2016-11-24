@@ -4,6 +4,8 @@
     <title>Planets Forecast List</title>
 </head>
 <body>
+    <p>${error}</p>
+
     <p> Pronóstico de tiempo para los planetas en los próximos ${years} : </p>
 
     <p> Cantidad de días Sequias: ${cantSequias}</p>
