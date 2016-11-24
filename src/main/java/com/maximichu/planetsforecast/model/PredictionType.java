@@ -4,13 +4,13 @@ import com.maximichu.planetsforecast.business.PositionDay;
 import com.maximichu.planetsforecast.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PredictionType {
+public class PredictionType implements Serializable {
 
     @Autowired
     private PositionDay positionDay;
-
 
     private Integer id;
     private Boolean planetasAlineados;

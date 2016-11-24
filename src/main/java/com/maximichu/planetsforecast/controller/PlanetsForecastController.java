@@ -2,6 +2,8 @@ package com.maximichu.planetsforecast.controller;
 
 import com.maximichu.planetsforecast.business.PlanetsForecast;
 import com.maximichu.planetsforecast.model.ForecastType;
+import com.maximichu.planetsforecast.model.PredictionType;
+import com.maximichu.planetsforecast.repo.PredictionTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,9 @@ public class PlanetsForecastController {
 
     @Autowired
     protected PlanetsForecast planetsForecast;
+
+    @Autowired
+    protected PredictionTypeRepository predictionTypeRepository;
 
     /**
      * Enpoint para consultar las predicciones de los planetas.
@@ -62,11 +67,15 @@ public class PlanetsForecastController {
     public ModelAndView forecast(HttpServletRequest request, HttpServletResponse response,
                                  Map<String, Object> model, @PathVariable("day") Integer day) {
 
-        // Buscar el forecast para el dia pasado por parametro y retornarlo como json object.
+        // Generar pronostico para los proximos 10 anios
+        planetsForecast.calculateForecast(10);
+
+        // Buscar el pronostico para el dia pasado por parametro y retornarlo como json object.
+        PredictionType prediction = predictionTypeRepository.findPrediction(day);
 
         // ahora lo mando a la view por el momento
-
-        model.put("day", day);
+        model.put("day", prediction.getId());
+        model.put("estadoClima", prediction.getEstadoClima());
 
         return new ModelAndView("forecastDay");
     }

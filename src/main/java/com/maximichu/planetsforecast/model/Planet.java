@@ -1,7 +1,8 @@
 package com.maximichu.planetsforecast.model;
 
-public class Planet {
+import java.io.Serializable;
 
+public class Planet implements Serializable {
 
     private Long id;
 

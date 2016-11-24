@@ -4,6 +4,7 @@
     <title>ForeCast By Day</title>
 </head>
 <body>
-<p>This is the planet forecast by day ${day}</p>
+<p>Este el pronóstico para el día ${day}</p>
+<p>Va a ver un clima predominantemente ${estadoClima}</p>
 </body>
 </html>

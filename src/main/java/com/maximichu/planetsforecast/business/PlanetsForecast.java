@@ -2,6 +2,7 @@ package com.maximichu.planetsforecast.business;
 
         import com.maximichu.planetsforecast.model.ForecastType;
         import com.maximichu.planetsforecast.model.PredictionType;
+        import com.maximichu.planetsforecast.repo.PredictionTypeRepository;
         import com.maximichu.planetsforecast.utils.Constantes;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Component;
@@ -11,6 +12,9 @@ public class PlanetsForecast {
 
     @Autowired
     private WeatherPrediction weatherPrediction;
+
+    @Autowired
+    private PredictionTypeRepository predictionTypeRepository;
 
     private Double picoMaximoLluvias = new Double(0.00);
 
@@ -27,6 +31,7 @@ public class PlanetsForecast {
             PredictionType prediccionDelDia = obtenerPrediccionDia(i);
 
             // Persistir la prediccion del dia.
+            predictionTypeRepository.savePrediction(prediccionDelDia);
 
             // Actualizar cantidades del pronostico.
             actualizarCantidadesPronostico(prediccionDelDia, forecastType);

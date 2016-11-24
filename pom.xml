@@ -8,7 +8,7 @@
 	<url>http://maven.apache.org</url>
   
 	<properties>
-		<spring.version>3.2.3.RELEASE</spring.version>
+		<spring.version>4.2.2.RELEASE</spring.version>
 		<jdk-version>1.7</jdk-version>
 		<servlet-api>2.5</servlet-api>
 		<servlet-api-jst>1.2</servlet-api-jst>
@@ -18,8 +18,10 @@
 		<hibernate.version>4.2.2.Final</hibernate.version>
 		<postgres.version>9.1-901.jdbc4</postgres.version>
 		<dbcp.version>1.4</dbcp.version>
+        <redis.version>1.6.2.RELEASE</redis.version>
+        <jedis.version>2.5.1</jedis.version>
 	</properties>
-  
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -41,6 +43,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>servlet-api</artifactId>
@@ -99,9 +106,19 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
 	</dependencies>
   
 	<build>
-		<finalName>SampleProject</finalName>
+		<finalName>PlanetsProject</finalName>
 	</build>
 </project>
