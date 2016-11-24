@@ -1,11 +1,11 @@
 package com.maximichu.planetsforecast.business;
 
-        import com.maximichu.planetsforecast.model.ForecastType;
-        import com.maximichu.planetsforecast.model.PredictionType;
-        import com.maximichu.planetsforecast.repo.PredictionTypeRepository;
-        import com.maximichu.planetsforecast.utils.Constantes;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Component;
+import com.maximichu.planetsforecast.model.ForecastType;
+import com.maximichu.planetsforecast.model.PredictionType;
+import com.maximichu.planetsforecast.repo.PredictionTypeRepository;
+import com.maximichu.planetsforecast.utils.Constantes;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PlanetsForecast {

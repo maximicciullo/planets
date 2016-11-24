@@ -18,7 +18,7 @@
 <form name='f' action="/planetForecast" method='POST'>
     <table>
         <tr>
-            <td>Cantidad de Anos a predecir:</td>
+            <td>Cantidad de Años a predecir:</td>
             <td><input type='text' name='years' value=''></td>
         </tr>
         <tr>

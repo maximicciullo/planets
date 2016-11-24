@@ -20,6 +20,7 @@
 		<dbcp.version>1.4</dbcp.version>
         <redis.version>1.6.2.RELEASE</redis.version>
         <jedis.version>2.5.1</jedis.version>
+        <jackson.version>2.7.0</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -116,7 +117,13 @@
             <artifactId>jedis</artifactId>
             <version>${jedis.version}</version>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+    </dependencies>
   
 	<build>
 		<finalName>PlanetsProject</finalName>

@@ -1,5 +1,7 @@
 package com.maximichu.planetsforecast.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Constantes {
 
     /**
@@ -49,6 +51,12 @@ public class Constantes {
     public static String CLIMA_HUMEDO = "LLUVIA";
     public static String CLIMA_SECO = "SECO";
     public static String CLIMA_OPTIMO = "OPTIMO";
-    public static String CLIMA_INICIAL = "INICIAL";
+    public static String CLIMA_NO_DEFINIDO = "NO DEFINIDO";
+
+    /**
+     * Defino JSON MAPPER.
+     */
+    public static final ObjectMapper JSON_MAPPER = new ObjectMapper();
+
 
 }

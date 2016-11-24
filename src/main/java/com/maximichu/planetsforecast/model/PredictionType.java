@@ -28,7 +28,7 @@ public class PredictionType implements Serializable {
         this.solTriangulo = Boolean.FALSE;
         this.perimetro = new Double(0.00);
         this.planetas = new ArrayList<Planet>();
-        this.estadoClima = Constantes.CLIMA_INICIAL;
+        this.estadoClima = Constantes.CLIMA_NO_DEFINIDO;
 
         if (planetas == null || planetas.isEmpty()) {
             cargarPlanetas();
