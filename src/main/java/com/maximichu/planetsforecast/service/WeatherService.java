@@ -11,12 +11,6 @@ import com.maximichu.planetsforecast.model.PredictionType;
 public interface WeatherService {
 
     /**
-     * Obtiene el pronostico del tiempo para los
-     * proximos 10 anios a partir de hoy.
-     */
-    void generarPronostico();
-
-    /**
      * Obtiene el pronositco del tiempo para los anios
      * indicados por parametro.
      *

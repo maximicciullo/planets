@@ -8,6 +8,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
 @ComponentScan
+/**
+ * Definicion de la configuracion del framework Redis.
+ */
 public class RedisConfiguration {
 
     @Bean

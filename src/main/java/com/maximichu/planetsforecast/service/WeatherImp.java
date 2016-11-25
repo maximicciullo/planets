@@ -13,17 +13,13 @@ import org.springframework.stereotype.Component;
  */
 public class WeatherImp implements WeatherService {
 
+    protected static int ANIOS_PREDICCION = 10;
+
     @Autowired
     protected PlanetsForecast planetsForecast;
 
     @Autowired
     protected PredictionTypeRepository predictionTypeRepository;
-
-    @Override
-    public void generarPronostico() {
-        // Generar pronostico para los proximos 10 anios
-        planetsForecast.calculateForecast(10);
-    }
 
     @Override
     public ForecastType calcularPronostico(int years) {
@@ -32,6 +28,7 @@ public class WeatherImp implements WeatherService {
 
     @Override
     public PredictionType obterPrediccionPorDia(int dia) {
-       return predictionTypeRepository.findPrediction(dia);
+        planetsForecast.calculateForecast(ANIOS_PREDICCION);
+        return predictionTypeRepository.findPrediction(dia);
     }
 }
