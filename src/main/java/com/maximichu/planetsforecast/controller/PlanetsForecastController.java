@@ -63,8 +63,6 @@ public class PlanetsForecastController {
     @RequestMapping(value = "forecast/{day}", method = RequestMethod.GET, produces = "application/json")
     public ModelAndView forecast(Map<String, Object> model, @PathVariable("day") Integer day) throws JsonProcessingException {
 
-        weatherService.generarPronostico();
-
         // Buscar el pronostico para el dia pasado por parametro y retornarlo como json object.
         PredictionType predictionType = weatherService.obterPrediccionPorDia(day);
 
