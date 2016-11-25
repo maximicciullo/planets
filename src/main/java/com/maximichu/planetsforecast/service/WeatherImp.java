@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+/**
+ * Implementacion del servicio climatico
+ */
 public class WeatherImp implements WeatherService {
 
     @Autowired
