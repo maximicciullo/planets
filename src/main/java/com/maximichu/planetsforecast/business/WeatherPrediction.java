@@ -1,12 +1,17 @@
 package com.maximichu.planetsforecast.business;
 
 
+import com.maximichu.planetsforecast.enums.Clima;
 import com.maximichu.planetsforecast.model.PredictionType;
-import com.maximichu.planetsforecast.utils.Constantes;
 import org.springframework.stereotype.Component;
 
 @Component
 public class WeatherPrediction {
+
+    public static Double SOL_POS_X = 0.0;
+    public static Double SOL_POS_Y = 0.0;
+    public static Float  LAMDA_TOLERANCIA = new Float(20);
+
 
     /**
      * Segun la posicion del los planetas y el sol, se puede saber
@@ -38,12 +43,12 @@ public class WeatherPrediction {
 
         if (predictionType.getPlanetasAlineados()) {
             if (predictionType.getSolConPlanetas()) {
-                predictionType.setEstadoClima(Constantes.CLIMA_SECO);
+                predictionType.setEstadoClima(Clima.SECO);
             } else {
-                predictionType.setEstadoClima(Constantes.CLIMA_OPTIMO);
+                predictionType.setEstadoClima(Clima.OPTIMO);
             }
         } else if(predictionType.getSolTriangulo()) {
-            predictionType.setEstadoClima(Constantes.CLIMA_HUMEDO);
+            predictionType.setEstadoClima(Clima.HUMEDO);
             predictionType.setPerimetro(obtenerPerimetroTriangulo(predictionType));
         }
 
@@ -65,13 +70,13 @@ public class WeatherPrediction {
 
     private Boolean condicionAlineados(Double x0, Double y0, Double x1, Double y1, Double x2, Double y2) {
         Double yProyectada = (x0 - x1) * (y2 - y1) / (x2 - x1) + y1;
-        Boolean planetasAlineados = Math.abs(yProyectada - y0) <= Constantes.LAMDA_TOLERANCIA;
+        Boolean planetasAlineados = Math.abs(yProyectada - y0) <= LAMDA_TOLERANCIA;
         return planetasAlineados;
     }
 
     private Boolean isSolAlineadoConPLanetas(PredictionType predictionType) {
-        Double solx = Constantes.SOL_POS_X;
-        Double soly = Constantes.SOL_POS_Y;
+        Double solx = SOL_POS_X;
+        Double soly = SOL_POS_Y;
 
         Double x1 = predictionType.getPosicionPlanetas().get(1).getX();
         Double y1 = predictionType.getPosicionPlanetas().get(1).getY();
@@ -92,8 +97,8 @@ public class WeatherPrediction {
         Double x2 = predictionType.getPosicionPlanetas().get(2).getX();
         Double y2 = predictionType.getPosicionPlanetas().get(2).getY();
 
-        Double solx = Constantes.SOL_POS_X;
-        Double soly = Constantes.SOL_POS_Y;
+        Double solx = SOL_POS_X;
+        Double soly = SOL_POS_Y;
 
         Boolean igualLadoAB = igualLado(solx, soly, x0, y0, x1, y1);
         Boolean igualLadoBC = igualLado(solx, soly, x1, y1, x2, y2);

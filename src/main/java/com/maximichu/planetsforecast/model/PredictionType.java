@@ -1,7 +1,7 @@
 package com.maximichu.planetsforecast.model;
 
 import com.maximichu.planetsforecast.business.PositionDay;
-import com.maximichu.planetsforecast.utils.Constantes;
+import com.maximichu.planetsforecast.enums.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -28,7 +28,7 @@ public class PredictionType implements Serializable {
         this.solTriangulo = Boolean.FALSE;
         this.perimetro = new Double(0.00);
         this.planetas = new ArrayList<Planet>();
-        this.estadoClima = Constantes.CLIMA_NO_DEFINIDO;
+        this.estadoClima = Clima.NO_DEFINIDO.getClima();
 
         if (planetas == null || planetas.isEmpty()) {
             cargarPlanetas();
@@ -39,9 +39,9 @@ public class PredictionType implements Serializable {
     }
 
     private void cargarPlanetas() {
-        Planet ferengi = new Planet(Constantes.FERENGI, Constantes.DIST_FERENGI, Constantes.VEL_FERENGI, Constantes.ROT_FERENGI);
-        Planet betasoide = new Planet(Constantes.BETASOIDE, Constantes.DIST_BETASOIDE, Constantes.VEL_BETASOIDE, Constantes.ROT_BETASOIDE);
-        Planet vulcano = new Planet(Constantes.VULCANO, Constantes.DIST_VULCANO, Constantes.VEL_VULCANO, Constantes.ROT_VULCANO);
+        Planet ferengi = new Planet(NombrePlaneta.FERENGI, DistanciaAlSol.FERENGI, VelocidadAngular.FERENGI, SentidoRotacion.FERENGI);
+        Planet betasoide = new Planet(NombrePlaneta.BETASOIDE, DistanciaAlSol.BETASOIDE, VelocidadAngular.BETASOIDE, SentidoRotacion.BETASOIDE);
+        Planet vulcano = new Planet(NombrePlaneta.VULCANO, DistanciaAlSol.VULCANO, VelocidadAngular.VULCANO, SentidoRotacion.VULCANO);
 
         planetas = new ArrayList<Planet>();
         planetas.add(ferengi);
@@ -105,8 +105,8 @@ public class PredictionType implements Serializable {
         return estadoClima;
     }
 
-    public void setEstadoClima(String estadoClima) {
-        this.estadoClima = estadoClima;
+    public void setEstadoClima(Clima estadoClima) {
+        this.estadoClima = estadoClima.getClima();
     }
 
     public PositionDay getPositionDay() {

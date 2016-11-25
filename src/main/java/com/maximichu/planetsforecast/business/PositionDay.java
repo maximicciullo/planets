@@ -2,11 +2,12 @@ package com.maximichu.planetsforecast.business;
 
 import com.maximichu.planetsforecast.model.Planet;
 import com.maximichu.planetsforecast.model.Position;
-import com.maximichu.planetsforecast.utils.Constantes;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PositionDay {
+
+    public static Integer GRAD_CIRCUNF = 360;
 
     public static Position getPosition(Planet planeta, Integer dia) {
         Double posicionAngular = getPosicionAngular(planeta, dia);
@@ -19,12 +20,12 @@ public class PositionDay {
     private static Double getPosicionAngular(Planet planet, Integer dia) {
         Double posicionAngular = planet.getVelocity() * dia;
 
-        if (posicionAngular >= Constantes.GRAD_CIRCUNF) {
-            posicionAngular = Constantes.GRAD_CIRCUNF - posicionAngular;
+        if (posicionAngular >= GRAD_CIRCUNF) {
+            posicionAngular = GRAD_CIRCUNF - posicionAngular;
         }
 
         if (posicionAngular != 0 && planet.getClockwise() != 1) {
-            posicionAngular = Math.abs(posicionAngular - Constantes.GRAD_CIRCUNF);
+            posicionAngular = Math.abs(posicionAngular - GRAD_CIRCUNF);
         }
         return posicionAngular;
     }
