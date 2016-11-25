@@ -16,3 +16,11 @@ Yuo would use two different endpoints to get the information:
 2) As an API you can hit http://localhost:8080/forecast/123 and you will get as response a JSON object like {"dia":123,"clima":"LLUVIA"}
 
 As you can imagine... /forecast/123 is the way to generate the request to the API and '123' is the day number to get the forecast weather.
+
+If you wanna test how the application works, an EC2 instance was created running Tomcat8 and Redis. You can hit the endpoints and take a look at the result as follow:
+
+CHECK FORECAST FOR ANY YEARS:
+http://ec2-35-164-45-250.us-west-2.compute.amazonaws.com:8080
+
+CHECK FORECAST FOR A PARTICULAR DAY:
+http://ec2-35-164-45-250.us-west-2.compute.amazonaws.com:8080/forecast/120
