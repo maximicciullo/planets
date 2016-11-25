@@ -10,6 +10,10 @@ import javax.annotation.PostConstruct;
 import java.util.Map;
 
 @Repository
+/**
+ * Implementacion del Repositorio definido para PredictionType
+ * utilizando motor de BD Redis almacenando los datos en memoria
+ */
 public class PredictionTypeRepositoryImp implements PredictionTypeRepository {
 
     private static final String KEY = "Prediction";
