@@ -1,5 +1,10 @@
 package com.maximichu.planetsforecast.model;
 
+import com.maximichu.planetsforecast.enums.DistanciaAlSol;
+import com.maximichu.planetsforecast.enums.NombrePlaneta;
+import com.maximichu.planetsforecast.enums.SentidoRotacion;
+import com.maximichu.planetsforecast.enums.VelocidadAngular;
+
 import java.io.Serializable;
 
 public class Planet implements Serializable {
@@ -17,11 +22,11 @@ public class Planet implements Serializable {
     private Position position;
 
 
-    public Planet(String name, Double distance, Double speed, Integer clockwise) {
-        this.name = name;
-        this.distance = distance;
-        this.speed = speed;
-        this.clockwise = clockwise;
+    public Planet(NombrePlaneta planet, DistanciaAlSol distance, VelocidadAngular speed, SentidoRotacion clockwise) {
+        this.name = planet.name();
+        this.distance = distance.getDistancia();
+        this.speed = speed.getVelocidad();
+        this.clockwise = clockwise.getSentidoRotacion();
     }
 
     public Long getId() {

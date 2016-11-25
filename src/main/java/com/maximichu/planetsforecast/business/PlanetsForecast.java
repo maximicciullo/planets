@@ -1,14 +1,16 @@
 package com.maximichu.planetsforecast.business;
 
+import com.maximichu.planetsforecast.enums.Clima;
 import com.maximichu.planetsforecast.model.ForecastType;
 import com.maximichu.planetsforecast.model.PredictionType;
 import com.maximichu.planetsforecast.repo.PredictionTypeRepository;
-import com.maximichu.planetsforecast.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PlanetsForecast {
+
+    public static Integer ANIO_EN_DIAS = 365;
 
     @Autowired
     private WeatherPrediction weatherPrediction;
@@ -20,7 +22,7 @@ public class PlanetsForecast {
 
     public ForecastType calculateForecast(Integer years) {
 
-        Integer aniosEnDias = years * Constantes.ANIO_EN_DIAS;
+        Integer aniosEnDias = years * ANIO_EN_DIAS;
 
         ForecastType forecastType = new ForecastType();
 
@@ -47,9 +49,9 @@ public class PlanetsForecast {
     }
 
     public void actualizarCantidadesPronostico(PredictionType prediccionDia, ForecastType forecastType) {
-        if (prediccionDia.getEstadoClima().equalsIgnoreCase(Constantes.CLIMA_SECO)) {
+        if (prediccionDia.getEstadoClima().equalsIgnoreCase(Clima.SECO.getClima())) {
             forecastType.setCantidadSequias(forecastType.getCantidadSequias() + 1);
-        } else if (prediccionDia.getEstadoClima().equalsIgnoreCase(Constantes.CLIMA_OPTIMO)) {
+        } else if (prediccionDia.getEstadoClima().equalsIgnoreCase(Clima.OPTIMO.getClima())) {
             forecastType.setCantidadCondOptimas(forecastType.getCantidadCondOptimas() + 1);
         } else {
             forecastType.setCantidadLluvias(forecastType.getCantidadLluvias() + 1);

@@ -1,12 +1,11 @@
 package com.maximichu.planetsforecast.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.maximichu.planetsforecast.model.ForecastType;
 import com.maximichu.planetsforecast.model.Prediction;
 import com.maximichu.planetsforecast.model.PredictionType;
-import com.maximichu.planetsforecast.repo.PredictionTypeRepository;
 import com.maximichu.planetsforecast.service.WeatherService;
-import com.maximichu.planetsforecast.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,8 @@ import java.util.Map;
 
 @Controller
 public class PlanetsForecastController {
+
+    public static final ObjectMapper JSON_MAPPER = new ObjectMapper();
 
     @Autowired
     protected WeatherService weatherService;
@@ -71,7 +72,7 @@ public class PlanetsForecastController {
         Prediction prediction = new Prediction(predictionType.getId(), predictionType.getEstadoClima());
 
         // Genreo el Objeto JSON.
-        String jsonString = Constantes.JSON_MAPPER.writeValueAsString(prediction);
+        String jsonString = JSON_MAPPER.writeValueAsString(prediction);
 
         model.put("jsonObject", jsonString);
 
