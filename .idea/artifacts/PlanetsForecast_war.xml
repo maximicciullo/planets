@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="PlanetsForecast:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="PlanetsProject.war">
-      <element id="artifact" artifact-name="PlanetsForecast:war exploded" />
-    </root>
-  </artifact>
-</component>
